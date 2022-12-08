@@ -14,42 +14,70 @@
  * =========================================================
  */
 
-synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:window1:869930:
-  appc.background(230);
-} //_CODE_:window1:869930:
-
-public void milk_click(GButton source, GEvent event) { //_CODE_:Milk:839104:
-  //println("Milk - GButton >> GEvent." + event + " @ " + millis());
-  Item item1 = new Item("Milk",17, 6);
-  items = (Item[]) append(items,item1);
-  DestinationSet = true;
-  ItemNum += 1;
+public void departmentListClicked(GDropList source, GEvent event) { //_CODE_:department:782519:
+  String departmentType ;
+  departmentType = department.getSelectedText();
+  if (departmentType == "Dairy");
+    milkButton.setVisible(true);
+    yogurtButton.setVisible(false);
   
-} //_CODE_:Milk:839104:
+} //_CODE_:department:782519:
 
-public void eggs_click(GButton source, GEvent event) { //_CODE_:eggs:740270:
-  //println("eggs - GButton >> GEvent." + event + " @ " + millis());
-  Item item2 = new Item("Eggs", 17, 12); 
-  items = (Item[]) append(items,item2);
-  DestinationSet = true;
-  ItemNum += 1;
-} //_CODE_:eggs:740270:
+public void milkButtonClicked(GButton source, GEvent event) { //_CODE_:milkButton:597819:
+  this.milk.amt = this.milk.amt + 1;
+  cart.add(this.milk.name);
+} //_CODE_:milkButton:597819:
 
-public void bread_click(GButton source, GEvent event) { //_CODE_:Bread:804874:
-  println("Bread - GButton >> GEvent." + event + " @ " + millis());
-  Item item3 = new Item("Bread",11, 10);
-  items = (Item[]) append(items,item3);
-  DestinationSet = true;
-  ItemNum += 1;
-} //_CODE_:Bread:804874:
+public void YogurtButtonClicked(GButton source, GEvent event) { //_CODE_:yogurtButton:304453:
+ this.yogurt.amt = this.yogurt.amt + 1;
+  cart.add(this.yogurt.name);
+} //_CODE_:yogurtButton:304453:
 
-public void apple_click(GButton source, GEvent event) { //_CODE_:Apple:970061:
-  println("Apple - GButton >> GEvent." + event + " @ " + millis());
-  Item item4 = new Item("Apple",5, 13);
-  items = (Item[]) append(items,item4);
-  DestinationSet = true;
-  ItemNum += 1;
-} //_CODE_:Apple:970061:
+public void chickenButtonClicked(GButton source, GEvent event) { //_CODE_:chickenButton:398522:
+ this.chicken.amt = this.chicken.amt + 1;
+ cart.add(this.chicken.name);
+} //_CODE_:chickenButton:398522:
+
+public void tomatoSButtonClicked(GButton source, GEvent event) { //_CODE_:tomatoSButton:391332:
+  this.tomatoS.amt = this.tomatoS.amt + 1;
+  cart.add(this.tomatoS.name);
+} //_CODE_:tomatoSButton:391332:
+
+public void soupCButtonClicked(GButton source, GEvent event) { //_CODE_:soupC:662700:
+ this.soupc.amt = this.soupc.amt + 1;
+  cart.add(this.soupc.name);
+} //_CODE_:soupC:662700:
+
+public void BeefButtonClicked(GButton source, GEvent event) { //_CODE_:beefButton:671859:
+  this.beef.amt = this.beef.amt + 1;
+  cart.add(this.beef.name);
+} //_CODE_:beefButton:671859:
+
+public void crackersButtonClicked(GButton source, GEvent event) { //_CODE_:CrackersButton:788604:
+  this.crackers.amt = this.crackers.amt + 1;
+  cart.add(this.crackers.name);
+} //_CODE_:CrackersButton:788604:
+
+public void WBreadButtonClicked(GButton source, GEvent event) { //_CODE_:wBreadButton:588538:
+ this.wBread.amt = this.wBread.amt + 1;
+  cart.add(this.wBread.name);
+} //_CODE_:wBreadButton:588538:
+
+public void doneButtonClicked(GButton source, GEvent event) { //_CODE_:doneButton:785750:
+  done = true; 
+} //_CODE_:doneButton:785750:
+
+public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:744998:
+  println("button1 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button1:744998:
+
+public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:529947:
+  println("button2 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button2:529947:
+
+public void button3_click1(GButton source, GEvent event) { //_CODE_:button3:312841:
+  println("button3 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button3:312841:
 
 
 
@@ -60,29 +88,88 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  window1 = GWindow.getWindow(this, "Window title", 0, 0, 240, 120, JAVA2D);
-  window1.noLoop();
-  window1.setActionOnClose(G4P.KEEP_OPEN);
-  window1.addDrawHandler(this, "win_draw1");
-  Milk = new GButton(window1, 10, 13, 80, 30);
-  Milk.setText("Milk");
-  Milk.addEventHandler(this, "milk_click");
-  eggs = new GButton(window1, 123, 13, 80, 30);
-  eggs.setText("Eggs");
-  eggs.addEventHandler(this, "eggs_click");
-  Bread = new GButton(window1, 10, 62, 80, 30);
-  Bread.setText("Bread");
-  Bread.addEventHandler(this, "bread_click");
-  Apple = new GButton(window1, 123, 62, 80, 30);
-  Apple.setText("Apple");
-  Apple.addEventHandler(this, "apple_click");
-  window1.loop();
+  label1 = new GLabel(this, 150, 12, 100, 27);
+  label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label1.setText("PATHAWAYS");
+  label1.setOpaque(false);
+  department = new GDropList(this, 29, 51, 111, 132, 5, 10);
+  department.setItems(loadStrings("list_782519"), 0);
+  department.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  department.addEventHandler(this, "departmentListClicked");
+  togGroup1 = new GToggleGroup();
+  label2 = new GLabel(this, 31, 27, 80, 29);
+  label2.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label2.setText("My budget is:");
+  label2.setOpaque(false);
+  milkButton = new GButton(this, 20, 141, 80, 30);
+  milkButton.setText("Milk");
+  milkButton.addEventHandler(this, "milkButtonClicked");
+  yogurtButton = new GButton(this, 20, 201, 80, 30);
+  yogurtButton.setText("Yogurt");
+  yogurtButton.addEventHandler(this, "YogurtButtonClicked");
+  chickenButton = new GButton(this, 210, 202, 80, 30);
+  chickenButton.setText("Chicken");
+  chickenButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+  chickenButton.addEventHandler(this, "chickenButtonClicked");
+  tomatoSButton = new GButton(this, 300, 201, 80, 30);
+  tomatoSButton.setText("Tomato Sauce");
+  tomatoSButton.setLocalColorScheme(GCScheme.RED_SCHEME);
+  tomatoSButton.addEventHandler(this, "tomatoSButtonClicked");
+  soupC = new GButton(this, 300, 140, 80, 30);
+  soupC.setText("Soup can");
+  soupC.setLocalColorScheme(GCScheme.RED_SCHEME);
+  soupC.addEventHandler(this, "soupCButtonClicked");
+  beefButton = new GButton(this, 210, 141, 80, 30);
+  beefButton.setText("Beef");
+  beefButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+  beefButton.addEventHandler(this, "BeefButtonClicked");
+  CrackersButton = new GButton(this, 115, 201, 80, 30);
+  CrackersButton.setText("Crackers");
+  CrackersButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  CrackersButton.addEventHandler(this, "crackersButtonClicked");
+  wBreadButton = new GButton(this, 115, 141, 80, 30);
+  wBreadButton.setTextAlign(GAlign.GOLD_SCHEME, GAlign.MIDDLE);
+  wBreadButton.setText("White Bread ");
+  wBreadButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  wBreadButton.addEventHandler(this, "WBreadButtonClicked");
+  doneButton = new GButton(this, 160, 271, 80, 30);
+  doneButton.setText("Done");
+  doneButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  doneButton.addEventHandler(this, "doneButtonClicked");
+  button1 = new GButton(this, 40, 350, 80, 30);
+  button1.setText("Broke Student");
+  button1.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  button1.addEventHandler(this, "button1_click1");
+  button2 = new GButton(this, 160, 350, 80, 30);
+  button2.setText("Big family");
+  button2.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  button2.addEventHandler(this, "button2_click1");
+  button3 = new GButton(this, 280, 350, 80, 30);
+  button3.setText("Rich couple");
+  button3.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  button3.addEventHandler(this, "button3_click1");
+  label3 = new GLabel(this, 160, 324, 80, 20);
+  label3.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label3.setText("Demos:");
+  label3.setOpaque(false);
 }
 
 // Variable declarations 
 // autogenerated do not edit
-GWindow window1;
-GButton Milk; 
-GButton eggs; 
-GButton Bread; 
-GButton Apple; 
+GLabel label1; 
+GDropList department; 
+GToggleGroup togGroup1; 
+GLabel label2; 
+GButton milkButton; 
+GButton yogurtButton; 
+GButton chickenButton; 
+GButton tomatoSButton; 
+GButton soupC; 
+GButton beefButton; 
+GButton CrackersButton; 
+GButton wBreadButton; 
+GButton doneButton; 
+GButton button1; 
+GButton button2; 
+GButton button3; 
+GLabel label3; 
